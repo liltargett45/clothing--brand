@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Market — Premium Shopping Experience</title>
+  <meta name="description" content="Discover premium products at Luxe Market. Shop electronics, clothing, accessories and more with fast shipping and easy returns.">
+  <meta name="keywords" content="luxury shopping, premium products, electronics, clothing, accessories">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="stylesheet" href="src/styles.css">
+  <link rel="stylesheet" href="src/components.css">
+  <style>
+    /* Initial loading screen */
+    #splash { position:fixed;inset:0;background:#0a0a0f;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.5s ease; }
+    #splash-logo { font-family:'Playfair Display',serif;font-size:48px;font-weight:800;background:linear-gradient(135deg,#8b5cf6,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px; }
+    #splash-bar { width:200px;height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden; }
+    #splash-progress { height:100%;background:linear-gradient(90deg,#8b5cf6,#ec4899);border-radius:2px;animation:loadBar 1.2s ease forwards; }
+    @keyframes loadBar { from{width:0} to{width:100%} }
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <div id="splash-logo">✦ LUXE</div>
+    <div id="splash-bar"><div id="splash-progress"></div></div>
+    <p style="color:#5a5a72;font-size:13px;margin-top:16px;letter-spacing:1px;">LOADING PREMIUM EXPERIENCE...</p>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Main App Root -->
+  <div id="app-root"></div>
+
+  <!-- Scripts — load in dependency order -->
+  <script src="src/store.js"></script>
+  <script src="src/ui.js"></script>
+  <script src="src/admin.js"></script>
+  <script src="src/pages.js"></script>
+  <script src="src/app.js"></script>
+  <script src="src/handlers.js"></script>
+
+  <script>
+    // Boot the application
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.style.opacity = '0';
+        setTimeout(() => { splash.remove(); App.init(); }, 500);
+      }, 1300);
+    });
+  </script>
+
+</body>
+</html>
